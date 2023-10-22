@@ -5,9 +5,16 @@ public abstract class GunWithClip : AbstractGun
     [SerializeField, Range(1, 100)] protected int maxClipSize;
     protected int CurrentClipSize;
 
-    public virtual bool CanShoot => CurrentClipSize > 0;
+    public override bool CanShoot => CurrentClipSize > 0;
 
-    public virtual void Reload()
+    protected override void Awake()
+    {
+        base.Awake();
+
+        CurrentClipSize = maxClipSize;
+    }
+
+    public override void Reload()
     {
         CurrentClipSize = maxClipSize;
     }
